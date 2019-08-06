@@ -6,11 +6,9 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 
 
-# Restrict to a particular path.
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
-# Create server
 with SimpleXMLRPCServer(('localhost', 8000),
                         requestHandler=RequestHandler, allow_none=True) as server:
     server.register_introspection_functions()
@@ -45,6 +43,5 @@ with SimpleXMLRPCServer(('localhost', 8000),
 
     server.register_instance(MyFuncs())
     server.register_multicall_functions()
-
-    # Run the server's main loop
+   
     server.serve_forever()
